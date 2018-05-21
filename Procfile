@@ -1,0 +1,1 @@
+worker: run ruby dirtyriverderbybot.rb
