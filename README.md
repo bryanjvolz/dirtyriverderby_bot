@@ -6,3 +6,6 @@ This bot runs automatically via the Scheduler addon but can be run manually with
 
 ## To Manage Jobs:
 `heroku addons:open scheduler` // `https://scheduler.heroku.com/dashboard`
+
+## Deployment:
+`git push heroku master`
