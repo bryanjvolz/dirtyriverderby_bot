@@ -36,9 +36,13 @@ end
 client.search("%22River+Cities+Cup%22", result_type: "recent").take(1).each do |tweet|
   #If tweet is in array, already responded so ignore, don't want to spam anyone
   puts tweet
+  puts tweet.inspect
+
   if( tweetIDList.include? tweet.id )
     #nothing, move on to next search or end function
+    puts 'Nothing to see here, already responded'
   else
+    puts 'Responding, saving ID'
     #Store ID in array so we don't respond again later
     #$redis.push('drd_tweet_ids',tweet.id)
     tweetIDList.push(tweet.id)
