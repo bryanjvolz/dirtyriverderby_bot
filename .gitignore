@@ -2,3 +2,5 @@
 .bundle/config
 vendor/bundle
 .DS_Store
+env
+.env.env
