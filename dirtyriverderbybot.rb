@@ -19,12 +19,14 @@ drd_replies = [
   "I think you meant #DirtyRiverDerby",
 ]
 
+tweetIDList = []
+
 drd = drd_replies.sample
 
 #Get array of all IDs already replied to
 #tweetIDList = $redis.keys('drd_tweet_ids')
 if( $redis.exists('drd_tweet_ids') )
-  tweetIDList[] = $redis.get('drd_tweet_ids')
+  tweetIDList = $redis.get('drd_tweet_ids')
   puts tweetIDList
 else
   $redis.set('drd_tweet_ids', '[1]');
