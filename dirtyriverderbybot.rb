@@ -26,10 +26,10 @@ drd = drd_replies.sample
 #Get array of all IDs already replied to
 #tweetIDList = $redis.keys('drd_tweet_ids')
 if( $redis.exists('drd_tweet_ids') )
-  tweetIDList = $redis.get('drd_tweet_ids')
+  tweetIDList = $redis.get('drd_tweet_ids').split(",").map { |s| s.to_i }
   puts tweetIDList
 else
-  $redis.set('drd_tweet_ids', '[1]');
+  $redis.set('drd_tweet_ids', '1');
 end
 
 #Search/reply for River Cities Cup phrase
@@ -40,7 +40,9 @@ client.search("%22River+Cities+Cup%22", result_type: "recent").take(1).each do |
     #nothing, move on to next search or end function
   else
     #Store ID in array so we don't respond again later
-    $redis.push('drd_tweet_ids',tweet.id)
+    #$redis.push('drd_tweet_ids',tweet.id)
+    tweetIDList.push(tweet.id)
+    $redis.set('drd_tweet_ids',tweetIDList)
     #Send actual tweet
     client.update("@#{tweet.user.screen_name} #{drd}", in_reply_to_status_id: tweet.id)
   end

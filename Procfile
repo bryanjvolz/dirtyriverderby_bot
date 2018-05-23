@@ -1,2 +1,2 @@
 worker: bundle install
-worker: run ruby dirtyriverderbybot.rb
+worker: ruby dirtyriverderbybot.rb
