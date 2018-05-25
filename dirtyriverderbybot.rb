@@ -33,7 +33,7 @@ else
 end
 
 #Search/reply for River Cities Cup phrase
-client.search("%22River+Cities+Cup%22", result_type: "recent").take(1).each do |tweet|
+client.search('"River Cities Rivalry" OR "River Cities Cup" OR %23RiverCitiesRivalry%2C OR %23RiverCitiesCup', result_type: "recent").take(1).each do |tweet|
   #If tweet is in array, already responded so ignore, don't want to spam anyone
   puts tweet
   puts tweet.inspect
@@ -51,9 +51,3 @@ client.search("%22River+Cities+Cup%22", result_type: "recent").take(1).each do |
     client.update("@#{tweet.user.screen_name} #{drd}", in_reply_to_status_id: tweet.id)
   end
 end
-
-#Search/reply for #RiverCitiesCup hashtag
-#client.search("#RiverCitiesCup", result_type: "recent").take(1).each do |tweet|
-  #Send actual tweet
-#  client.update("@#{tweet.user.screen_name} #{drd}", in_reply_to_status_id: tweet.id)
-#end
