@@ -8,10 +8,10 @@ require 'twitter'
 $redis = Redis.new(url: ENV["REDIS_URL"])
 
 client = Twitter::REST::Client.new do |config|
-	config.consumer_key			= 'tVhCE4dDregfjBZO53qzZYNKs'
-	config.consumer_secret		= 'caPS1gbLN9ZRPPmsap1vedJi6nLuoiOjkXYjjjnxnaqrKxujYJ'
-	config.access_token			= '983719735442509824-kmskSi9RK8RP7feMz4p56oHYBDt0Hf4'
-	config.access_token_secret	= 'XXoIO0mbtZh7hQvvXpb4hV8a4pabRzqLKndGc4j41858R'
+	config.consumer_key			= ENV["TWITTER_CONS_KEY"]
+	config.consumer_secret		= ENV["TWITTER_CONS_SECRET"]
+	config.access_token			= ENV["TWITTER_TOKEN"]
+	config.access_token_secret	= ENV["TWITTER_TOKEN_SECRET"]
 end
 
 drd_replies = [
@@ -24,7 +24,6 @@ tweetIDList = []
 drd = drd_replies.sample
 
 #Get array of all IDs already replied to
-#tweetIDList = $redis.keys('drd_tweet_ids')
 if( $redis.exists('drd_tweet_ids') )
   tweetIDList = $redis.get('drd_tweet_ids').split(",").map { |s| s.to_i }
   puts tweetIDList
@@ -32,8 +31,8 @@ else
   $redis.set('drd_tweet_ids', '1');
 end
 
-#Search/reply for River Cities Cup phrase
-client.search('"River Cities Rivalry" OR "River Cities Cup" OR %23RiverCitiesRivalry%2C OR %23RiverCitiesCup', result_type: "recent").take(1).each do |tweet|
+#Search/reply for River Cities Cup + related phrases/hastags
+client.search('"River Cities Rivalry" OR "River Cities Cup" OR %23RiverCitiesRivalry%2C OR %23RiverCitiesCup', result_type: "recent").take(5).each do |tweet|
   #If tweet is in array, already responded so ignore, don't want to spam anyone
   puts tweet
   puts tweet.inspect
