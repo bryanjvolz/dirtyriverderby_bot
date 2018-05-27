@@ -5,3 +5,6 @@ vendor/bundle
 env
 .env
 ./vendor/bundle
+/vendor/
+vendor/
+lib/
