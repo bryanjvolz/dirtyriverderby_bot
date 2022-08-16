@@ -17,6 +17,8 @@ end
 drd_replies = [
   "Did you mean 'Dirty River Derby'? #dirtyriverderby",
   "I think you meant #DirtyRiverDerby",
+  "Now and forever, #DirtyRiverDerby",
+  "The #DirtyRiverDerby will never die"
 ]
 
 tweetIDList = []
