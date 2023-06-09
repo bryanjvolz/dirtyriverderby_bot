@@ -2,6 +2,8 @@
 
 Ruby based Twitter reply bot for Heroku based on `https://www.johnpe.art/2017/01/16/its-you-twitter-bot`
 
+Heroku deprecated the account type used in 2023 and the bot no longer runs from that environment. Will need to be moved to continue operation or for similar usage with another focus.
+
 The Dirty River Derby is the 'real' name for the soccer rivalry between Louisville City FC and FC Cincinnati. `//www.dirtyriverderby.com/`
 
 ## Run the bot
